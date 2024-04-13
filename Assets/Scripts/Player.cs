@@ -12,12 +12,34 @@ public class Player : MonoBehaviour
     void Update() {
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        Debug.Log("Player position: " + rigidbody.position);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float speed = 4f;
-        rigidbody.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
+        const float speed = 4f;
+
+        float verticalVelocity = verticalInput * speed;
+        float horizontalVelocity = horizontalInput * speed;
+
+        // Check for borders
+        const float borderY = 1.95f;
+        if (verticalVelocity > 0 && rigidbody.position.y > borderY) {
+            verticalVelocity = 0;
+        }
+        if (verticalVelocity < 0 && rigidbody.position.y < -borderY) {
+            verticalVelocity = 0;
+        }
+        const float borderX = 3.7f;
+        if (horizontalVelocity > 0 && rigidbody.position.x > borderX) {
+            horizontalVelocity = 0;
+        }
+        if (horizontalVelocity < 0 && rigidbody.position.x < -borderX) {
+            horizontalVelocity = 0;
+        }
+
+        rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
 }
