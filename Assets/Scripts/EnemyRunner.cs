@@ -13,4 +13,10 @@ public class EnemyRunner : MonoBehaviour
 
         rigidbody.velocity = new Vector2(1 * speed, 0);
     }
+    
+    // Disable this script when the GameObject moves out of the camera's view
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
