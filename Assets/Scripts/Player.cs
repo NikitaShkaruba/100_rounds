@@ -45,6 +45,14 @@ public class Player : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D collider) {
+        CheckDeath(collider);
+    }
+
+    private void CheckDeath(Collider2D collider) {
+        if (!collider.name.Contains("Enemy")) {
+            return;
+        }
+
         Debug.Log("U DED");
         Destroy(gameObject);
     }
