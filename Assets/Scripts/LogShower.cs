@@ -1,25 +1,30 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
-public class LogShower : MonoBehaviour
-{
-    Queue queue = new Queue();
+public class LogShower : MonoBehaviour {
+    private readonly Queue queue = new();
 
-    void Start() {
-        Debug.Log("Started up logging.");
+    public void Start() {
+        Debug.Log("Started up logging");
     }
 
-    void OnEnable() {
+    public void OnEnable() {
         Application.logMessageReceived += HandleLog;
     }
 
-    void OnDisable() {
+    public void OnDisable() {
         Application.logMessageReceived -= HandleLog;
     }
 
-    void HandleLog(string logString, string stackTrace, LogType type) {
+    public void OnGUI() {
+        GUILayout.BeginArea(new Rect(Screen.width - 1070, 0, 400, Screen.height));
+        GUILayout.Label("\n" + string.Join("\n", queue.ToArray()));
+        GUILayout.EndArea();
+    }
+
+    private void HandleLog(string logString, string stackTrace, LogType type) {
         queue.Enqueue(logString);
-        
+
         if (type == LogType.Exception) {
             queue.Enqueue(stackTrace);
         }
@@ -28,11 +33,5 @@ public class LogShower : MonoBehaviour
         while (queue.Count > 10) {
             queue.Dequeue();
         }
-    }
-
-    void OnGUI() {
-        GUILayout.BeginArea(new Rect(Screen.width - 1070, 0, 400, Screen.height));
-        GUILayout.Label("\n" + string.Join("\n", queue.ToArray()));
-        GUILayout.EndArea();
     }
 }

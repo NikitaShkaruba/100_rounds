@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-    private float verticalInput;
+[RequireComponent(typeof(Rigidbody2D))]
+public class Player : MonoBehaviour {
     private float horizontalInput;
 
-    [SerializeField] private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
+    private float verticalInput;
 
-    void Update() {
+    public void Start() {
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    public void Update() {
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -17,12 +19,11 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    public void FixedUpdate() {
         const float speed = 4f;
 
-        float verticalVelocity = verticalInput * speed;
-        float horizontalVelocity = horizontalInput * speed;
+        var verticalVelocity = verticalInput * speed;
+        var horizontalVelocity = horizontalInput * speed;
 
         // Check for borders
         const float borderY = 1.95f;
@@ -43,8 +44,7 @@ public class Player : MonoBehaviour
         rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
+    public void OnTriggerEnter2D(Collider2D collider) {
         Debug.Log("U DED");
         Destroy(gameObject);
     }
