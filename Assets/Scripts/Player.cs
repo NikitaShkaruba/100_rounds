@@ -42,4 +42,10 @@ public class Player : MonoBehaviour
 
         rigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("U DED");
+        Destroy(gameObject);
+    }
 }
