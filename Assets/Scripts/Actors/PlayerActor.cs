@@ -7,7 +7,7 @@ namespace Actors {
     [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(DieBehaviour))]
     [RequireComponent(typeof(ArenaMoveBehaviour))]
-    public class Player : MonoBehaviour {
+    public class PlayerActor : MonoBehaviour {
         private ArenaMoveBehaviour arenaMoveBehaviour;
         private DieBehaviour dieBehaviour;
         private PlayerControllable playerControllable;

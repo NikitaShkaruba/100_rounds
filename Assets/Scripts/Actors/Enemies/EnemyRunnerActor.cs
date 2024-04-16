@@ -1,7 +1,7 @@
 using HumbleObjects.Movement;
 
 namespace Actors.Enemies {
-    public class EnemyRunner : Enemy {
+    public class EnemyRunnerActor : EnemyActor {
         private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
 
         public void Awake() {

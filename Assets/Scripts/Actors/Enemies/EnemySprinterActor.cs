@@ -3,7 +3,7 @@ using HumbleObjects.Movement;
 using UnityEngine;
 
 namespace Actors.Enemies {
-    public class EnemySprinter : Enemy {
+    public class EnemySprinterActor : EnemyActor {
         private ArenaSpeedChangeable arenaSpeedChangeable;
         private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
 
