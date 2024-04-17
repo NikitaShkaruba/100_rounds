@@ -35,18 +35,18 @@ namespace HumbleObjects {
                 Direction.Right => new Vector3(-startingPosition, 0, 0),
                 Direction.Down => new Vector3(0, startingPosition, 0),
                 Direction.Left => new Vector3(startingPosition, 0, 0),
-                _ => throw new NotImplementedException()
+                _ => throw new Exception("sprint effect position is not supported for this direction")
             };
         }
 
         private static Vector3 GetEffectRotation(Direction moveDirection) {
-            const float effectLength = 3f;
+            const float rotation = 90f;
             return moveDirection switch {
-                Direction.Up => new Vector3(effectLength, 0, 0),
-                Direction.Right => new Vector3(0, -effectLength, 0),
-                Direction.Down => new Vector3(-effectLength, 0, 0),
-                Direction.Left => new Vector3(0, effectLength, 0),
-                _ => throw new NotImplementedException()
+                Direction.Up => new Vector3(rotation, 0, 0),
+                Direction.Right => new Vector3(0, -rotation, 0),
+                Direction.Down => new Vector3(-rotation, 0, 0),
+                Direction.Left => new Vector3(0, rotation, 0),
+                _ => throw new Exception("sprint effect rotation is not supported for this direction")
             };
         }
     }
