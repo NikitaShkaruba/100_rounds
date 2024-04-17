@@ -3,22 +3,26 @@ using HumbleObjects.Movement;
 using UnityEngine;
 
 namespace Actors.Enemies {
+    [RequireComponent(typeof(ArenaSprintBehaviour))]
     public class EnemySprinterActor : EnemyActor {
-        private ArenaSpeedChangeable arenaSpeedChangeable;
+        private ArenaSprintBehaviour arenaSprintBehaviour;
         private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
 
         public void Awake() {
-            arenaSpeedChangeable = new ArenaSpeedChangeable();
-
+            arenaSprintBehaviour = gameObject.GetComponent<ArenaSprintBehaviour>();
             oneDirectionMoveBehaviour = gameObject.GetComponent<OneDirectionMoveBehaviour>();
         }
 
+        public void Start() {
+            arenaSprintBehaviour.Initialize(oneDirectionMoveBehaviour.runDirection);
+        }
+
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Move(arenaSpeedChangeable.speed);
+            oneDirectionMoveBehaviour.Move(arenaSprintBehaviour.speed);
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {
-            arenaSpeedChangeable.ProcessCollision(collider);
+            arenaSprintBehaviour.ProcessCollision(collider);
         }
     }
 }
