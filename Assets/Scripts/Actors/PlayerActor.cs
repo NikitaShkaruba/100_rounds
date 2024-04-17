@@ -25,7 +25,12 @@ namespace Actors {
         }
 
         public void FixedUpdate() {
-            arenaMoveBehaviour.Move(playerControllable.GetMoveDirection(), 4f);
+            if (dieBehaviour.isDead) {
+                arenaMoveBehaviour.StopAcceleration();
+                return;
+            }
+
+            arenaMoveBehaviour.Accelerate(playerControllable.GetMoveDirection(), 4f);
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {

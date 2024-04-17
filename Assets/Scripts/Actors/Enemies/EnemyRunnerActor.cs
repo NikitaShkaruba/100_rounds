@@ -9,7 +9,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Move(3f);
+            oneDirectionMoveBehaviour.Accelerate(3f);
         }
     }
 }

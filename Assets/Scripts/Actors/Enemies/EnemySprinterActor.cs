@@ -18,7 +18,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Move(arenaSprintBehaviour.speed);
+            oneDirectionMoveBehaviour.Accelerate(arenaSprintBehaviour.speed);
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {
