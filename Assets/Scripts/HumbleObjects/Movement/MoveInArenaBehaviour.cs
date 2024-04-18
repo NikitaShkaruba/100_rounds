@@ -2,9 +2,9 @@
 using UnityEngine;
 
 namespace HumbleObjects.Movement {
-    public class ArenaMoveBehaviour : MoveBehaviour {
-        protected override Vector2 ComputeVelocity(Direction direction, float speed) {
-            var velocity = base.ComputeVelocity(direction, speed);
+    public class MoveInArenaBehaviour : MoveBehaviour {
+        protected override Vector2 ComputeVelocity(Direction direction) {
+            var velocity = base.ComputeVelocity(direction);
 
             const float borderY = 1.95f;
             const float borderX = 3.7f;

@@ -11,7 +11,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            preArenaStoppableMoveBehaviour.Move(1.5f);
+            preArenaStoppableMoveBehaviour.Move();
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {

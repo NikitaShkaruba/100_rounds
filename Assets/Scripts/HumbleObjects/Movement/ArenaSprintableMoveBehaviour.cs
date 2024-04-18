@@ -2,14 +2,13 @@
 using Shared;
 using UnityEngine;
 
-namespace HumbleObjects {
+namespace HumbleObjects.Movement {
     [RequireComponent(typeof(ParticleSystem))]
-    public class ArenaSprintBehaviour : MonoBehaviour {
-        public float speed = 3f;
-
+    public class ArenaSprintableMoveBehaviour : OneDirectionMoveBehaviour {
         private new ParticleSystem particleSystem;
 
-        public void Start() {
+        public new void Start() {
+            base.Start();
             particleSystem = GetComponent<ParticleSystem>();
         }
 
@@ -19,7 +18,7 @@ namespace HumbleObjects {
             shape.rotation = GetEffectRotation(moveDirection);
         }
 
-        public void ProcessCollision(Collider2D collider) {
+        public void CheckIfNeedsToSprint(Collider2D collider) {
             if (!collider.name.Equals("Arena")) {
                 return;
             }

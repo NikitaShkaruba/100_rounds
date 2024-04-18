@@ -6,31 +6,31 @@ namespace Actors {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(DieBehaviour))]
-    [RequireComponent(typeof(ArenaMoveBehaviour))]
+    [RequireComponent(typeof(MoveInArenaBehaviour))]
     public class PlayerActor : MonoBehaviour {
-        private ArenaMoveBehaviour arenaMoveBehaviour;
         private DieBehaviour dieBehaviour;
+        private MoveInArenaBehaviour moveInArenaBehaviour;
         private PlayerControllable playerControllable;
 
         public void Awake() {
             playerControllable = new PlayerControllable();
 
             dieBehaviour = gameObject.GetComponent<DieBehaviour>();
-            arenaMoveBehaviour = gameObject.GetComponent<ArenaMoveBehaviour>();
+            moveInArenaBehaviour = gameObject.GetComponent<MoveInArenaBehaviour>();
         }
 
         public void Update() {
             playerControllable.UpdatePlayerInput();
-            Debug.Log("Player position: " + arenaMoveBehaviour.rigidbody.position);
+            Debug.Log("Player position: " + moveInArenaBehaviour.rigidbody.position);
         }
 
         public void FixedUpdate() {
             if (dieBehaviour.isDead) {
-                arenaMoveBehaviour.StopMovement();
+                moveInArenaBehaviour.StopMovement();
                 return;
             }
 
-            arenaMoveBehaviour.Move(playerControllable.GetMoveDirection(), 4f);
+            moveInArenaBehaviour.Move(playerControllable.GetMoveDirection());
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {

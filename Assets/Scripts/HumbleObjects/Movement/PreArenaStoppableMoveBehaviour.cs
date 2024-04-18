@@ -4,13 +4,13 @@ namespace HumbleObjects.Movement {
     public class PreArenaStoppableMoveBehaviour : OneDirectionMoveBehaviour {
         private bool isStopped;
 
-        public new void Move(float speed) {
+        public new void Move() {
             if (isStopped) {
                 StopMovement();
                 return;
             }
 
-            base.Move(runDirection, speed);
+            base.Move(runDirection);
         }
 
         public void CheckIfNeedsToStop(Collider2D collider) {

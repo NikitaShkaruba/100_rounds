@@ -11,7 +11,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Move(3f);
+            oneDirectionMoveBehaviour.Move();
         }
     }
 }

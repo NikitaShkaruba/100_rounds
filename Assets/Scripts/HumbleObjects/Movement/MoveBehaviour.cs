@@ -6,6 +6,7 @@ namespace HumbleObjects.Movement {
     [RequireComponent(typeof(Rigidbody2D))]
     public class MoveBehaviour : MonoBehaviour {
         [HideInInspector] public new Rigidbody2D rigidbody;
+        public float speed;
 
         public void Start() {
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -15,11 +16,11 @@ namespace HumbleObjects.Movement {
             rigidbody.velocity = new Vector2(0, 0);
         }
 
-        public void Move(Direction direction, float speed) {
-            rigidbody.velocity = ComputeVelocity(direction, speed);
+        public void Move(Direction direction) {
+            rigidbody.velocity = ComputeVelocity(direction);
         }
 
-        protected virtual Vector2 ComputeVelocity(Direction direction, float speed) {
+        protected virtual Vector2 ComputeVelocity(Direction direction) {
             return direction switch {
                 Direction.Up => new Vector2(0, speed),
                 Direction.UpRight => new Vector2(speed, speed),

@@ -176,3 +176,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
   runDirection: 0
+  speed: 1.5

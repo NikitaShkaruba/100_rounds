@@ -1,29 +1,25 @@
-using HumbleObjects;
 using HumbleObjects.Movement;
 using UnityEngine;
 
 namespace Actors.Enemies {
-    [RequireComponent(typeof(ArenaSprintBehaviour))]
-    [RequireComponent(typeof(OneDirectionMoveBehaviour))]
+    [RequireComponent(typeof(ArenaSprintableMoveBehaviour))]
     public class EnemySprinterActor : EnemyActor {
-        private ArenaSprintBehaviour arenaSprintBehaviour;
-        private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
+        private ArenaSprintableMoveBehaviour arenaSprintableMoveBehaviour;
 
         public void Awake() {
-            arenaSprintBehaviour = gameObject.GetComponent<ArenaSprintBehaviour>();
-            oneDirectionMoveBehaviour = gameObject.GetComponent<OneDirectionMoveBehaviour>();
+            arenaSprintableMoveBehaviour = gameObject.GetComponent<ArenaSprintableMoveBehaviour>();
         }
 
         public void Start() {
-            arenaSprintBehaviour.Initialize(oneDirectionMoveBehaviour.runDirection);
+            arenaSprintableMoveBehaviour.Initialize(arenaSprintableMoveBehaviour.runDirection);
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Move(arenaSprintBehaviour.speed);
+            arenaSprintableMoveBehaviour.Move();
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {
-            arenaSprintBehaviour.ProcessCollision(collider);
+            arenaSprintableMoveBehaviour.CheckIfNeedsToSprint(collider);
         }
     }
 }
