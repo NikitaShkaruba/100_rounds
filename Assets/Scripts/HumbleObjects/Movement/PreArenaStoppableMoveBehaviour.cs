@@ -2,7 +2,7 @@
 
 namespace HumbleObjects.Movement {
     public class PreArenaStoppableMoveBehaviour : OneDirectionMoveBehaviour {
-        private bool isStopped;
+        [HideInInspector] public bool isStopped;
 
         public new void Move() {
             if (isStopped) {
