@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Actors.Enemies {
     [RequireComponent(typeof(ArenaSprintBehaviour))]
+    [RequireComponent(typeof(OneDirectionMoveBehaviour))]
     public class EnemySprinterActor : EnemyActor {
         private ArenaSprintBehaviour arenaSprintBehaviour;
         private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
@@ -18,7 +19,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Accelerate(arenaSprintBehaviour.speed);
+            oneDirectionMoveBehaviour.Move(arenaSprintBehaviour.speed);
         }
 
         public void OnTriggerEnter2D(Collider2D collider) {

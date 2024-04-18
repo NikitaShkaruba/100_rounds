@@ -1,6 +1,8 @@
 using HumbleObjects.Movement;
+using UnityEngine;
 
 namespace Actors.Enemies {
+    [RequireComponent(typeof(OneDirectionMoveBehaviour))]
     public class EnemyRunnerActor : EnemyActor {
         private OneDirectionMoveBehaviour oneDirectionMoveBehaviour;
 
@@ -9,7 +11,7 @@ namespace Actors.Enemies {
         }
 
         public void FixedUpdate() {
-            oneDirectionMoveBehaviour.Accelerate(3f);
+            oneDirectionMoveBehaviour.Move(3f);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace HumbleObjects.Movement {
             rigidbody = gameObject.GetComponent<Rigidbody2D>();
         }
 
-        public void StopAcceleration() {
+        public void StopMovement() {
             rigidbody.velocity = new Vector2(0, 0);
         }
 
-        public void Accelerate(Direction direction, float speed) {
+        public void Move(Direction direction, float speed) {
             rigidbody.velocity = ComputeVelocity(direction, speed);
         }
 
