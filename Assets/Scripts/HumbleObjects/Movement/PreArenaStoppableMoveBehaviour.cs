@@ -14,7 +14,7 @@ namespace HumbleObjects.Movement {
         }
 
         public void CheckIfNeedsToStop(Collider2D collider) {
-            if (!collider.name.Equals("Arena")) {
+            if (!collider.name.Equals("PreArena")) {
                 return;
             }
 
